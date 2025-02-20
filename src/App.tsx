@@ -4,7 +4,7 @@ import AddExpenses from "./pages/AddExpenses";
 import LineChart from "./pages/Charts/LineChart";
 import BarChart from "./pages/Charts/BarChart";
 import Calendar from "./pages/Calendar";
-import ExpenseList from "./pages/Tables/ExpenseList";
+import ExpenseList from "./pages/ExpenseList";
 import FormElements from "./pages/Forms/FormElements";
 import Category from "./pages/Category";
 import AppLayout from "./layout/AppLayout";

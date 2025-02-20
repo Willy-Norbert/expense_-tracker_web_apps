@@ -1,0 +1,19 @@
+.react-calendar {
+  background: transparent !important;
+  border: none !important;
+}
+
+.react-calendar__tile {
+  background: transparent !important;
+  color: black; /* Adjust text color if needed */
+  box-shadow: inset;
+}
+.react-calendar__tile:hover{
+  background: rgba(9, 1, 23, 0.582) !important;
+  color: rgb(65, 65, 65); /* Adjust text color if needed */
+  box-shadow: inset;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: rgba(0, 0, 0, 0.5); /* Make outside-month dates faded */
+}

@@ -1,8 +1,16 @@
 import PageBreadcrumb from "../components/common/PageBreadCrumb";
 
 import PageMeta from "../components/common/PageMeta";
+import ExpenseForm from "../components/ExpenseForm";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import { Expense } from "../types/Expense";
 
-export default function AddExpense() {
+export default function AddExpenses  () {
+  const [expenses, setExpenses] = useLocalStorage<Expense[]>("expenses", []);
+
+  const addExpense = (expense: Expense) => {
+    setExpenses([...expenses, expense]);
+  };
   return (
     <>
       <PageMeta
@@ -14,11 +22,10 @@ export default function AddExpense() {
         <h3 className="mb-5 text-lg font-semibold text-gray-800 dark:text-white/90 lg:mb-7">
          Expenses
         </h3>
-        {/* <div className="space-y-6">
-          <UserMetaCard />
-          <UserInfoCard />
-          <UserAddressCard />
-        </div> */}
+        <div className="p-4">
+      <h2 className="text-xl mb-4">Add Expense</h2>
+      <ExpenseForm addExpense={addExpense} />
+    </div>
       </div>
     </>
   );
