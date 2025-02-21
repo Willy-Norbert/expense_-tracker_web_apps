@@ -2,6 +2,8 @@
 
 This is an expense tracking web application that allows users to manage their expenses, view expense categories, and track expenses by date using a calendar. The application stores data locally and provides a user-friendly interface for managing finances.
 
+Hosted on https://expense-trackerwebapps.vercel.app/
+
 ## Features
 - Add and categorize expenses.
 - View expenses broken down by categories.
@@ -20,6 +22,7 @@ This is an expense tracking web application that allows users to manage their ex
    - Expenses are stored in the browser's local storage using the `useLocalStorage` custom hook, which makes it easy to persist data even after the page is refreshed.
    - Expenses include fields like `amount`, `category`, and `date`.
    - Users can view their expenses categorized by type and track them by selecting dates from a calendar.
+   - First you create expenses 
 
 2. **Category Breakdown**:
    - The application groups expenses by categories and displays the total amount spent in each category.
@@ -41,3 +44,5 @@ To run this project locally, follow these steps:
 1. Clone the repository:
    ```bash
    git clone <repository-url>
+   npm i
+   npm run vite
