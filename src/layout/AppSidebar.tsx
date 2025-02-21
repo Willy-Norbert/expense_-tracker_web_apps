@@ -2,10 +2,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 
+
 // Assume these icons are imported from an icon library
 import {
   CalenderIcon,
   ChevronDownIcon,
+  GearIcon,
   GridIcon,
   HorizontaLDots,
   ListIcon,
@@ -47,6 +49,11 @@ const navItems: NavItem[] = [
     name: "Categories",
     icon: <PageIcon />,
    path: "/Categories",
+  },
+  {
+    name: "Settings",
+    icon: <GearIcon />,
+   path: "/Settings",
   },
 ];
 

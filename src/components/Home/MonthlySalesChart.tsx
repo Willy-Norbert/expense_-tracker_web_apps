@@ -1,36 +1,72 @@
 import { Expense } from "../../types/Expense";
-import { Chart as ChartJS, BarElement, CategoryScale, LinearScale } from "chart.js";
-import { Bar } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
 
-ChartJS.register(BarElement, CategoryScale, LinearScale);
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface Props {
   expenses: Expense[];
 }
 
 const MonthlySalesChart: React.FC<Props> = ({ expenses }) => {
-  const monthlyExpenses: { [month: string]: number } = {};
+  // Aggregate expenses by category
+  const categoryExpenses: { [category: string]: number } = {};
 
   expenses.forEach((expense) => {
-    const month = new Date(expense.date).toLocaleString("default", { month: "short" });
-    monthlyExpenses[month] = (monthlyExpenses[month] || 0) + expense.amount;
+    const category = expense.category; // Assuming 'category' field exists in 'Expense'
+    categoryExpenses[category] = (categoryExpenses[category] || 0) + expense.amount;
   });
 
+  // Chart data configuration
   const data = {
-    labels: Object.keys(monthlyExpenses),
+    labels: Object.keys(categoryExpenses), // Categories
     datasets: [
       {
-        label: "Monthly Expenses",
-        data: Object.values(monthlyExpenses),
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
+        data: Object.values(categoryExpenses), // Expense amounts for each category
+        backgroundColor: [
+          "#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#F7633D", "#C9F7F5", // You can add more colors as needed
+        ],
+        hoverBackgroundColor: [
+          "#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#F7633D", "#C9F7F5", // Hover colors
+        ],
+        borderWidth: 1,
       },
     ],
   };
 
+  // Chart options configuration
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: "top", // Position the legend at the top
+        labels: {
+          font: {
+            size: 14, // Increase font size for the legend
+            family: "'Roboto', sans-serif", // Font family
+          },
+        },
+      },
+      tooltip: {
+        backgroundColor: "#333", // Dark background for tooltips
+        titleColor: "#fff", // Tooltip title color
+        bodyColor: "#fff", // Tooltip body color
+        padding: 10, // Padding inside the tooltip
+        cornerRadius: 5, // Rounded corners for the tooltip
+        displayColors: false, // Disable color box beside tooltips
+      },
+    },
+  };
+
   return (
-    <div className="bg-transparent p-4 shadow-xl rounded">
-      <h2 className="text-xl mb-4">Monthly Expense Chart</h2>
-      <Bar data={data} />
+    <div className="bg-white p-6 shadow-xl rounded-lg border border-gray-200 max-w-full mx-auto">
+      <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-6 text-center">
+        Expense Distribution by Category
+      </h2>
+      <div className="relative h-64 md:h-80">
+        <Doughnut data={data} options={options} />
+      </div>
     </div>
   );
 };

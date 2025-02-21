@@ -9,10 +9,18 @@ const StatisticsChart: React.FC<Props> = ({ expenses }) => {
   const avgExpense = totalSpent / (expenses.length || 1);
 
   return (
-    <div className="bg-transparent p-4 shadow-xl rounded">
-      <h2 className="text-xl mb-4">Statistics</h2>
-      <p>Total Spent: <strong>${totalSpent.toFixed(2)}</strong></p>
-      <p>Average Expense: <strong>${avgExpense.toFixed(2)}</strong></p>
+    <div className="bg-white p-6 shadow-xl rounded-lg border border-gray-200 max-w-md mx-auto">
+      <h2 className="text-2xl font-semibold text-gray-900 mb-6 text-center">Expense Statistics</h2>
+      <div className="space-y-4">
+        <div className="flex justify-between">
+          <p className="text-gray-700">Total Spent:</p>
+          <p className="font-semibold text-green-600">RWF{totalSpent.toFixed(2)}</p>
+        </div>
+        <div className="flex justify-between">
+          <p className="text-gray-700">Average Expense:</p>
+          <p className="font-semibold text-blue-600">RWF{avgExpense.toFixed(2)}</p>
+        </div>
+      </div>
     </div>
   );
 };

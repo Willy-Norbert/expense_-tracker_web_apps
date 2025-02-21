@@ -21,9 +21,9 @@ export default function ExpenseList() {
         title="React.js Basic Tables Dashboard | TailAdmin - Next.js Admin Dashboard Template"
         description="This is React.js Basic Tables Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
       />
-      <PageBreadcrumb pageTitle="Basic Tables" />
+      <PageBreadcrumb pageTitle="Expense" />
       <div className="space-y-6">
-        <ComponentCard title="Basic Table 1">
+        <ComponentCard >
           <div className="p-4">
             <h2 className="text-xl mb-4">Expense List</h2>
             <ExpenseLists expenses={expenses} deleteExpense={deleteExpense} />

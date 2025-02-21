@@ -7,32 +7,34 @@ interface Props {
 
 const ExpenseLists: React.FC<Props> = ({ expenses, deleteExpense }) => {
   return (
-    <div className="bg-transparent p-4 shadow-md rounded">
-     
+    <div className="bg-white p-6 shadow-lg rounded-lg overflow-hidden">
+      {/* Header with no expenses */}
       {expenses.length === 0 ? (
-        <p className="text-center">--No expenses recorded.--</p>
+        <div className="text-center text-gray-500">
+          <p className="text-lg">-- No expenses recorded yet --</p>
+        </div>
       ) : (
-        <table className="w-full border-collapse">
+        <table className="w-full table-auto text-sm text-gray-700">
           <thead>
-            <tr className="bg-gray-200">
-              <th className="border p-2">Amount</th>
-              <th className="border p-2">Category</th>
-              <th className="border p-2">Description</th>
-              <th className="border p-2">Date</th>
-              <th className="border p-2">Actions</th>
+            <tr className="bg-gray-100 text-left">
+              <th className="px-4 py-2 border-b font-semibold">Amount</th>
+              <th className="px-4 py-2 border-b font-semibold">Category</th>
+              <th className="px-4 py-2 border-b font-semibold">Description</th>
+              <th className="px-4 py-2 border-b font-semibold">Date</th>
+              <th className="px-4 py-2 border-b font-semibold text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
             {expenses.map((expense) => (
-              <tr key={expense.id} className="text-center">
-                <td className="border p-2">${expense.amount.toFixed(2)}</td>
-                <td className="border p-2">{expense.category}</td>
-                <td className="border p-2">{expense.description}</td>
-                <td className="border p-2">{new Date(expense.date).toLocaleDateString()}</td>
-                <td className="border p-2">
+              <tr key={expense.id} className="hover:bg-gray-50">
+                <td className="px-4 py-3 border-b text-center">RWF{expense.amount.toFixed(2)}</td>
+                <td className="px-4 py-3 border-b text-center capitalize">{expense.category}</td>
+                <td className="px-4 py-3 border-b">{expense.description}</td>
+                <td className="px-4 py-3 border-b text-center">{new Date(expense.date).toLocaleDateString()}</td>
+                <td className="px-4 py-3 border-b text-center">
                   <button
                     onClick={() => deleteExpense(expense.id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded"
+                    className="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
                   >
                     Delete
                   </button>

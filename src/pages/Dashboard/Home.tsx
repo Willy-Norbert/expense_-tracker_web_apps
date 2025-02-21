@@ -16,9 +16,11 @@ const HomeDashboard = () => {
       <EcommerceMetrics expenses={expenses} />
       <MonthlySalesChart expenses={expenses} />
       <MonthlySavingTarget 
-        totalSpent={expenses.reduce((sum, exp) => sum + exp.amount, 0)} 
-        savingTarget={savingTarget} 
-      />
+  totalSpent={expenses.reduce((sum, exp) => sum + exp.amount, 0)} 
+  savingTarget={savingTarget} 
+  expenses={expenses} // Add this to correctly pass the expenses array
+/>
+
       <StatisticsChart expenses={expenses} />
       <DemographicCard />
       <RecentExpenses expenses={expenses} />

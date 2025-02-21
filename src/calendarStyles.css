@@ -17,3 +17,55 @@
 .react-calendar__month-view__days__day--neighboringMonth {
   color: rgba(0, 0, 0, 0.5); /* Make outside-month dates faded */
 }
+/* calendarStyles.css */
+.react-calendar__tile.highlighted {
+  background-color: #ffcc00;
+  color: rgb(66, 220, 122);
+  font-weight: bolder;
+  initial-value: nklj;
+}
+/* calendarStyles.css */
+
+/* Circle today's date */
+.react-calendar__tile.today {
+  border-radius: 50%;
+  background-color: #00bcd4; /* You can adjust the color */
+  color: white;
+}
+
+/* Highlight dates with expenses */
+.react-calendar__tile.highlighted {
+  background-color: #ffcc00;
+  color: rgb(22, 175, 91);
+}
+
+/* Optionally, change style when the date is both today's and has expenses */
+.react-calendar__tile.today.highlighted {
+  border: 2px solid #ffcc00; /* Add a border for dates that are both today and have expenses */
+}
+/* Highlight today's date and dates with expenses */
+.react-calendar__tile.today {
+  background-color: #1e3a8a; /* Blue background for today */
+  color: rgb(82, 80, 80);
+  border-radius: 50%;
+}
+
+.react-calendar__tile.highlighted {
+  background-color: #34d399; /* Green background for dates with expenses */
+  color: rgb(83, 83, 83);
+  border-radius: 50%;
+}
+
+.react-calendar__tile.today.highlighted {
+  border: 2px solid #696b6a; /* Green border for today's highlighted date */
+}
+
+/* Optional: Add hover effect on calendar tiles */
+.react-calendar__tile:hover {
+  background-color: #656667;
+  cursor: pointer;
+}
+
+
+
+
