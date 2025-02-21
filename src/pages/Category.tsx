@@ -21,7 +21,7 @@ export default function CategoriesPage() {
   return (
     <div>
       <PageMeta
-        title="Expense Categories | TailAdmin - Next.js Dashboard"
+        title="Expense Categories"
         description="Manage and view your categorized expenses efficiently."
       />
       <PageBreadcrumb pageTitle="Expense Categories" />

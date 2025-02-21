@@ -18,12 +18,12 @@ export default function ExpenseList() {
   return (
     <>
       <PageMeta
-        title="React.js Basic Tables Dashboard | TailAdmin - Next.js Admin Dashboard Template"
+        title="ExpenseList"
         description="This is React.js Basic Tables Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
       />
-      <PageBreadcrumb pageTitle="Expense" />
+      <PageBreadcrumb pageTitle="Basic Tables" />
       <div className="space-y-6">
-        <ComponentCard >
+        <ComponentCard title="Basic Table 1">
           <div className="p-4">
             <h2 className="text-xl mb-4">Expense List</h2>
             <ExpenseLists expenses={expenses} deleteExpense={deleteExpense} />

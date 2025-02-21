@@ -20,7 +20,7 @@ export default function AddExpenses() {
   return (
     <>
       <PageMeta
-        title="React.js Add Expense Dashboard | TailAdmin - Next.js Admin Dashboard Template"
+        title="AddExpenses"
         description="This is React.js Add Expense Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
       />
       <PageBreadcrumb pageTitle="Add Expense" />

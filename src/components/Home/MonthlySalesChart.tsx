@@ -34,38 +34,13 @@ const MonthlySalesChart: React.FC<Props> = ({ expenses }) => {
     ],
   };
 
-  // Chart options configuration
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: "top", // Position the legend at the top
-        labels: {
-          font: {
-            size: 14, // Increase font size for the legend
-            family: "'Roboto', sans-serif", // Font family
-          },
-        },
-      },
-      tooltip: {
-        backgroundColor: "#333", // Dark background for tooltips
-        titleColor: "#fff", // Tooltip title color
-        bodyColor: "#fff", // Tooltip body color
-        padding: 10, // Padding inside the tooltip
-        cornerRadius: 5, // Rounded corners for the tooltip
-        displayColors: false, // Disable color box beside tooltips
-      },
-    },
-  };
-
   return (
     <div className="bg-white p-6 shadow-xl rounded-lg border border-gray-200 max-w-full mx-auto">
       <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-6 text-center">
         Expense Distribution by Category
       </h2>
       <div className="relative h-64 md:h-80">
-        <Doughnut data={data} options={options} />
+        <Doughnut data={data} />
       </div>
     </div>
   );

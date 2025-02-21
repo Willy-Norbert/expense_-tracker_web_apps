@@ -1,27 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 interface Props {
   resetExpenses: () => void;
-  setCurrency: (currency: string) => void;
-  setConversionRate: (rate: number) => void;
-  setExpenses: (expenses: number) => void;
+  setExpenses: (expenses: number[]) => void; // Updated to accept an array
 }
 
-function Settings({
-  resetExpenses,
-  setCurrency,
-  setConversionRate,
-  setExpenses,
-}: Props) {
+function Settings({ resetExpenses, setExpenses }: Props) {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isDataReset, setIsDataReset] = useState(false);
 
   const handleResetAllData = () => {
-    const isDataPresent =
-      localStorage.getItem("currency") ||
-      localStorage.getItem("expenses") ||
-      localStorage.getItem("conversionRate");
+    const isDataPresent = localStorage.getItem("expenses");
 
     if (isDataPresent) {
       setIsPopupVisible(true);
@@ -29,24 +19,24 @@ function Settings({
       setIsDataReset(false);
 
       // Simulate progress animation
-      setTimeout(() => setProgress(20), 500);
-      setTimeout(() => setProgress(60), 1000);
-      setTimeout(() => setProgress(100), 1500);
+      let currentProgress = 0;
+      const interval = setInterval(() => {
+        if (currentProgress < 100) {
+          currentProgress += 20;
+          setProgress(currentProgress);
+        } else {
+          clearInterval(interval);
+        }
+      }, 500);
 
       setTimeout(() => {
-        localStorage.removeItem("currency");
         localStorage.removeItem("expenses");
-        localStorage.removeItem("conversionRate");
 
-        setCurrency("USD");
-        setConversionRate(1);
-        setExpenses(0);
+        setExpenses([]); // Ensure it is set to an empty array
         resetExpenses();
 
         setIsDataReset(true);
       }, 2000);
-
-      setTimeout(() => setIsPopupVisible(false), 3000);
     }
   };
 
@@ -81,7 +71,9 @@ function Settings({
                 <p className="text-sm text-gray-600 mt-2">{progress}%</p>
               </>
             ) : (
-              <p className="text-sm text-green-600 mt-2">All data has been reset successfully.</p>
+              <p className="text-sm text-green-600 mt-2">
+                All data has been reset successfully.
+              </p>
             )}
           </div>
         </div>

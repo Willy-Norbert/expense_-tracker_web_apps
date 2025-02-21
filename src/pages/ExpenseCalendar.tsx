@@ -24,13 +24,15 @@ const ExpenseCalendar: React.FC<Props> = ({ expenses }) => {
     const latestExpense = expenses.reduce((latest, current) =>
       new Date(latest.date) > new Date(current.date) ? latest : current
     );
-    setSelectedDate(new Date(latestExpense.date));
+    setSelectedDate(new Date(latestExpense.date)); // Select latest expense date by default
   }, [expenses]);
 
-  const handleDateChange = (date: Date | Date[]) => {
-    setSelectedDate(Array.isArray(date) ? date[0] : date);
+  // Manually handle date selection (by clicking on the calendar date)
+  const handleDateSelect = (date: Date) => {
+    setSelectedDate(date); // Update the selected date
   };
 
+  // Filter expenses by selected date
   const filteredExpenses = selectedDate
     ? expenses.filter(
         (expense) =>
@@ -46,8 +48,8 @@ const ExpenseCalendar: React.FC<Props> = ({ expenses }) => {
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="w-full lg:w-2/3">
           <Calendar
-            onChange={handleDateChange}
-            value={selectedDate ?? today}
+            value={selectedDate ?? today} // Default to the latest date or today
+            onClickDay={handleDateSelect} // Handle date click
             tileClassName={({ date }) => {
               const isHighlighted = highlightedDates.some(
                 (highlightedDate) =>

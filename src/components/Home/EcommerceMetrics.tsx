@@ -17,8 +17,8 @@ const EcommerceMetrics: React.FC<Props> = ({ expenses }) => {
     datasets: [
       {
         data: [totalSpent, totalTransactions],
-        backgroundColor: ["#4F8A10", "#F49F1C"], // Green for Total Expenses, Orange for Transactions
-        hoverBackgroundColor: ["#3E6E0F", "#D7860A"], // Darker shades for hover effect
+        backgroundColor: ["#4F8A10", "#F49F1C"],
+        hoverBackgroundColor: ["#3E6E0F", "#D7860A"],
         borderWidth: 1,
       },
     ],
@@ -30,21 +30,24 @@ const EcommerceMetrics: React.FC<Props> = ({ expenses }) => {
 
       <div className="flex justify-center items-center">
         <div className="w-full sm:w-3/4 lg:w-2/3">
-          <Pie data={data} options={{ responsive: true, plugins: { tooltip: { callbacks: { label: (tooltipItem) => `${tooltipItem.label}: ${tooltipItem.raw.toFixed(2)}` } } } }} />
+          <Pie
+            data={data}
+            options={{
+              responsive: true,
+              plugins: {
+                tooltip: {
+                  callbacks: {
+                    label: (tooltipItem) => {
+                      const value = tooltipItem.raw as number;
+                      return `${tooltipItem.label}: ${value.toFixed(2)}`;
+                    },
+                  },
+                },
+              },
+            }}
+          />
         </div>
       </div>
-{/* 
-      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6 text-center">
-        <div className="p-6 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg shadow-md hover:shadow-xl transition-all">
-          <h3 className="text-xl font-medium mb-2">Total Expenses</h3>
-          <p className="text-3xl font-semibold">RWF {totalSpent.toFixed(2)}</p>
-        </div>
-
-        <div className="p-6 bg-gradient-to-r from-green-600 to-green-400 text-white rounded-lg shadow-md hover:shadow-xl transition-all">
-          <h3 className="text-xl font-medium mb-2">Transactions</h3>
-          <p className="text-3xl font-semibold">{totalTransactions}</p>
-        </div>
-      </div> */}
     </div>
   );
 };
